@@ -21,7 +21,7 @@ clean:
 	@rm -fr *.o *.exe *~
 
 TestProductMatrix.exe : TestProductMatrix.cpp Matrix.hpp Matrix.cpp ProdMatMat.cpp
-	$(CXX) $(CXXFLAGS2) $^ -o $@ $(LIB)	
+	$(CXX) $(CXXFLAGS2) $^ -o -$@ $(LIB)	
 
 test_product_matrice_blas.exe : test_product_matrice_blas.cpp Matrix.hpp Matrix.cpp
 	$(CXX) $(CXXFLAGS2) $^ -o $@ $(LIB)	$(BLAS)

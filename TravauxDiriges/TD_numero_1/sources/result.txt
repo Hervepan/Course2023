@@ -1,0 +1,112 @@
+dimension: 1024 sizeblock: 15g++ -fopenmp -std=c++14 -O3 -march=native -Wall -O2 -march=native -Wall -frecord-gcc-switches TestProductMatrix.cpp Matrix.hpp Matrix.cpp ProdMatMat.cpp -o -TestProductMatrix.exe -lpthread
+Test passed
+Temps CPU produit matrice-matrice naif : 0.568623 secondes
+MFlops -> 3776.64
+dimension: 2048 sizeblock: 15g++ -fopenmp -std=c++14 -O3 -march=native -Wall -O2 -march=native -Wall -frecord-gcc-switches TestProductMatrix.cpp Matrix.hpp Matrix.cpp ProdMatMat.cpp -o -TestProductMatrix.exe -lpthread
+Test passed
+Temps CPU produit matrice-matrice naif : 4.17182 secondes
+MFlops -> 4118.08
+dimension: 512 sizeblock: 15g++ -fopenmp -std=c++14 -O3 -march=native -Wall -O2 -march=native -Wall -frecord-gcc-switches TestProductMatrix.cpp Matrix.hpp Matrix.cpp ProdMatMat.cpp -o -TestProductMatrix.exe -lpthread
+Test passed
+Temps CPU produit matrice-matrice naif : 0.050507 secondes
+MFlops -> 5314.82
+dimension: 4096 sizeblock: 15g++ -fopenmp -std=c++14 -O3 -march=native -Wall -O2 -march=native -Wall -frecord-gcc-switches TestProductMatrix.cpp Matrix.hpp Matrix.cpp ProdMatMat.cpp -o -TestProductMatrix.exe -lpthread
+Test passed
+Temps CPU produit matrice-matrice naif : 34.3622 secondes
+MFlops -> 3999.71
+dimension: 1024 sizeblock: 32g++ -fopenmp -std=c++14 -O3 -march=native -Wall -O2 -march=native -Wall -frecord-gcc-switches TestProductMatrix.cpp Matrix.hpp Matrix.cpp ProdMatMat.cpp -o -TestProductMatrix.exe -lpthread
+Test passed
+Temps CPU produit matrice-matrice naif : 0.547781 secondes
+MFlops -> 3920.33
+dimension: 2048 sizeblock: 32g++ -fopenmp -std=c++14 -O3 -march=native -Wall -O2 -march=native -Wall -frecord-gcc-switches TestProductMatrix.cpp Matrix.hpp Matrix.cpp ProdMatMat.cpp -o -TestProductMatrix.exe -lpthread
+Test passed
+Temps CPU produit matrice-matrice naif : 4.24944 secondes
+MFlops -> 4042.86
+dimension: 512 sizeblock: 32g++ -fopenmp -std=c++14 -O3 -march=native -Wall -O2 -march=native -Wall -frecord-gcc-switches TestProductMatrix.cpp Matrix.hpp Matrix.cpp ProdMatMat.cpp -o -TestProductMatrix.exe -lpthread
+Test passed
+Temps CPU produit matrice-matrice naif : 0.0719168 secondes
+MFlops -> 3732.59
+dimension: 4096 sizeblock: 32g++ -fopenmp -std=c++14 -O3 -march=native -Wall -O2 -march=native -Wall -frecord-gcc-switches TestProductMatrix.cpp Matrix.hpp Matrix.cpp ProdMatMat.cpp -o -TestProductMatrix.exe -lpthread
+Test passed
+Temps CPU produit matrice-matrice naif : 34.1751 secondes
+MFlops -> 4021.61
+dimension: 1024 sizeblock: 64g++ -fopenmp -std=c++14 -O3 -march=native -Wall -O2 -march=native -Wall -frecord-gcc-switches TestProductMatrix.cpp Matrix.hpp Matrix.cpp ProdMatMat.cpp -o -TestProductMatrix.exe -lpthread
+Test passed
+Temps CPU produit matrice-matrice naif : 0.541189 secondes
+MFlops -> 3968.08
+dimension: 2048 sizeblock: 64g++ -fopenmp -std=c++14 -O3 -march=native -Wall -O2 -march=native -Wall -frecord-gcc-switches TestProductMatrix.cpp Matrix.hpp Matrix.cpp ProdMatMat.cpp -o -TestProductMatrix.exe -lpthread
+Test passed
+Temps CPU produit matrice-matrice naif : 4.23076 secondes
+MFlops -> 4060.71
+dimension: 512 sizeblock: 64g++ -fopenmp -std=c++14 -O3 -march=native -Wall -O2 -march=native -Wall -frecord-gcc-switches TestProductMatrix.cpp Matrix.hpp Matrix.cpp ProdMatMat.cpp -o -TestProductMatrix.exe -lpthread
+Test passed
+Temps CPU produit matrice-matrice naif : 0.0728892 secondes
+MFlops -> 3682.79
+dimension: 4096 sizeblock: 64g++ -fopenmp -std=c++14 -O3 -march=native -Wall -O2 -march=native -Wall -frecord-gcc-switches TestProductMatrix.cpp Matrix.hpp Matrix.cpp ProdMatMat.cpp -o -TestProductMatrix.exe -lpthread
+Test passed
+Temps CPU produit matrice-matrice naif : 35.5453 secondes
+MFlops -> 3866.59
+dimension: 1024 sizeblock: 128g++ -fopenmp -std=c++14 -O3 -march=native -Wall -O2 -march=native -Wall -frecord-gcc-switches TestProductMatrix.cpp Matrix.hpp Matrix.cpp ProdMatMat.cpp -o -TestProductMatrix.exe -lpthread
+Test passed
+Temps CPU produit matrice-matrice naif : 0.579806 secondes
+MFlops -> 3703.8
+dimension: 2048 sizeblock: 128g++ -fopenmp -std=c++14 -O3 -march=native -Wall -O2 -march=native -Wall -frecord-gcc-switches TestProductMatrix.cpp Matrix.hpp Matrix.cpp ProdMatMat.cpp -o -TestProductMatrix.exe -lpthread
+Test passed
+Temps CPU produit matrice-matrice naif : 4.58918 secondes
+MFlops -> 3743.56
+dimension: 512 sizeblock: 128g++ -fopenmp -std=c++14 -O3 -march=native -Wall -O2 -march=native -Wall -frecord-gcc-switches TestProductMatrix.cpp Matrix.hpp Matrix.cpp ProdMatMat.cpp -o -TestProductMatrix.exe -lpthread
+Test passed
+Temps CPU produit matrice-matrice naif : 0.0736406 secondes
+MFlops -> 3645.21
+dimension: 4096 sizeblock: 128g++ -fopenmp -std=c++14 -O3 -march=native -Wall -O2 -march=native -Wall -frecord-gcc-switches TestProductMatrix.cpp Matrix.hpp Matrix.cpp ProdMatMat.cpp -o -TestProductMatrix.exe -lpthread
+Test passed
+Temps CPU produit matrice-matrice naif : 35.6111 secondes
+MFlops -> 3859.44
+dimension: 1024 sizeblock: 256g++ -fopenmp -std=c++14 -O3 -march=native -Wall -O2 -march=native -Wall -frecord-gcc-switches TestProductMatrix.cpp Matrix.hpp Matrix.cpp ProdMatMat.cpp -o -TestProductMatrix.exe -lpthread
+Test passed
+Temps CPU produit matrice-matrice naif : 0.520532 secondes
+MFlops -> 4125.55
+dimension: 2048 sizeblock: 256g++ -fopenmp -std=c++14 -O3 -march=native -Wall -O2 -march=native -Wall -frecord-gcc-switches TestProductMatrix.cpp Matrix.hpp Matrix.cpp ProdMatMat.cpp -o -TestProductMatrix.exe -lpthread
+Test passed
+Temps CPU produit matrice-matrice naif : 4.32134 secondes
+MFlops -> 3975.58
+dimension: 512 sizeblock: 256g++ -fopenmp -std=c++14 -O3 -march=native -Wall -O2 -march=native -Wall -frecord-gcc-switches TestProductMatrix.cpp Matrix.hpp Matrix.cpp ProdMatMat.cpp -o -TestProductMatrix.exe -lpthread
+Test passed
+Temps CPU produit matrice-matrice naif : 0.0531798 secondes
+MFlops -> 5047.7
+dimension: 4096 sizeblock: 256g++ -fopenmp -std=c++14 -O3 -march=native -Wall -O2 -march=native -Wall -frecord-gcc-switches TestProductMatrix.cpp Matrix.hpp Matrix.cpp ProdMatMat.cpp -o -TestProductMatrix.exe -lpthread
+Test passed
+Temps CPU produit matrice-matrice naif : 34.6458 secondes
+MFlops -> 3966.98
+dimension: 1024 sizeblock: 512g++ -fopenmp -std=c++14 -O3 -march=native -Wall -O2 -march=native -Wall -frecord-gcc-switches TestProductMatrix.cpp Matrix.hpp Matrix.cpp ProdMatMat.cpp -o -TestProductMatrix.exe -lpthread
+Test passed
+Temps CPU produit matrice-matrice naif : 0.530431 secondes
+MFlops -> 4048.57
+dimension: 2048 sizeblock: 512g++ -fopenmp -std=c++14 -O3 -march=native -Wall -O2 -march=native -Wall -frecord-gcc-switches TestProductMatrix.cpp Matrix.hpp Matrix.cpp ProdMatMat.cpp -o -TestProductMatrix.exe -lpthread
+Test passed
+Temps CPU produit matrice-matrice naif : 4.42416 secondes
+MFlops -> 3883.2
+dimension: 512 sizeblock: 512g++ -fopenmp -std=c++14 -O3 -march=native -Wall -O2 -march=native -Wall -frecord-gcc-switches TestProductMatrix.cpp Matrix.hpp Matrix.cpp ProdMatMat.cpp -o -TestProductMatrix.exe -lpthread
+Test passed
+Temps CPU produit matrice-matrice naif : 0.0556648 secondes
+MFlops -> 4822.36
+dimension: 4096 sizeblock: 512g++ -fopenmp -std=c++14 -O3 -march=native -Wall -O2 -march=native -Wall -frecord-gcc-switches TestProductMatrix.cpp Matrix.hpp Matrix.cpp ProdMatMat.cpp -o -TestProductMatrix.exe -lpthread
+Test passed
+Temps CPU produit matrice-matrice naif : 35.5421 secondes
+MFlops -> 3866.94
+dimension: 1024 sizeblock: 1024g++ -fopenmp -std=c++14 -O3 -march=native -Wall -O2 -march=native -Wall -frecord-gcc-switches TestProductMatrix.cpp Matrix.hpp Matrix.cpp ProdMatMat.cpp -o -TestProductMatrix.exe -lpthread
+Test passed
+Temps CPU produit matrice-matrice naif : 0.556109 secondes
+MFlops -> 3861.62
+dimension: 2048 sizeblock: 1024g++ -fopenmp -std=c++14 -O3 -march=native -Wall -O2 -march=native -Wall -frecord-gcc-switches TestProductMatrix.cpp Matrix.hpp Matrix.cpp ProdMatMat.cpp -o -TestProductMatrix.exe -lpthread
+Test passed
+Temps CPU produit matrice-matrice naif : 4.63235 secondes
+MFlops -> 3708.67
+dimension: 512 sizeblock: 1024g++ -fopenmp -std=c++14 -O3 -march=native -Wall -O2 -march=native -Wall -frecord-gcc-switches TestProductMatrix.cpp Matrix.hpp Matrix.cpp ProdMatMat.cpp -o -TestProductMatrix.exe -lpthread
+Test passed
+Temps CPU produit matrice-matrice naif : 0.0774119 secondes
+MFlops -> 3467.63
+dimension: 4096 sizeblock: 1024g++ -fopenmp -std=c++14 -O3 -march=native -Wall -O2 -march=native -Wall -frecord-gcc-switches TestProductMatrix.cpp Matrix.hpp Matrix.cpp ProdMatMat.cpp -o -TestProductMatrix.exe -lpthread
+Test passed
+Temps CPU produit matrice-matrice naif : 38.4617 secondes
+MFlops -> 3573.4
