@@ -1,7 +1,8 @@
 // Produit matrice-vecteur
-# include <cassert>
-# include <vector>
-# include <iostream>
+#include <cassert>
+#include <vector>
+#include <iostream>
+#include <mpi.h>
 
 // ---------------------------------------------------------------------
 class Matrix : public std::vector<double>
@@ -43,12 +44,14 @@ private:
     int m_nrows, m_ncols;
     std::vector<double> m_arr_coefs;
 };
+
 // ---------------------------------------------------------------------
 inline std::ostream& 
 operator << ( std::ostream& out, const Matrix& A )
 {
     return A.print(out);
 }
+
 // ---------------------------------------------------------------------
 inline std::ostream&
 operator << ( std::ostream& out, const std::vector<double>& u )
@@ -59,6 +62,7 @@ operator << ( std::ostream& out, const std::vector<double>& u )
     out << " ]";
     return out;
 }
+
 // ---------------------------------------------------------------------
 std::vector<double> 
 Matrix::operator * ( const std::vector<double>& u ) const
