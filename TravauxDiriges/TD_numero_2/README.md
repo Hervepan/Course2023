@@ -46,7 +46,7 @@ $$ S(n) = 3,7 $$
 On va diviser le nombre de ligne par le nombre de processus actifs. 
 Puisqu'on utilise un gather pour récuperer toutes les données, il faut que le nombre de ligne = 600 doit être divisble par le nombre de processus actif
 
-Nombre de processus  | temps en seconde  | speed_up 
+Nombre de processus  | Temps (s)| speed_up 
 -----------|--------------------------|------------
 Séquentiel|99.0591|1
 2|49.8853|0.50359129
