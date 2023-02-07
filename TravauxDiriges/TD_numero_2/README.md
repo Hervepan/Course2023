@@ -43,21 +43,24 @@ $$ S(n) = 3,7 $$
 
 ## Mandelbrot 
 
-*Expliquer votre stratégie pour faire une partition équitable des lignes de l'image entre chaque processus*
+On va diviser le nombre de ligne par le nombre de processus actifs. 
+Puisqu'on utilise un gather pour récuperer toutes les données, il faut que le nombre de ligne = 600 doit être divisble par le nombre de processus actif
 
-           | Taille image : 800 x 600 | 
------------+---------------------------
-séquentiel |              
-1          |              
-2          |              
-3          |              
-4          |              
-8          |              
+           | Taille image : 800 x 600 | speed_up 
+-----------+--------------------------|------------
+Séquentiel|99.0591|1
+2|49.8853|0.50359129
+3|37.9914|0.383522564
+4|29.7911|0.300740669
+6|26.4884|0.267399966
+8|29.3877|0.296668353
 
+Ici on observe que le temps n'augmente pas linéairement comme on pourrait l'imaginer. Cela conforte la loi d'Ahmdal.
+En regardant de plus près les résultats on remarque que c'est souvent les process qui obtiennent des lignes situés vers la fin de l'image qui bloque le programme. 
+Par exemple : pour 8 processus, le processus 1 et 2 finissent en seulement 1 seconde alors que le processus de rang 7 lui prend 30 sec 
 
-*Discuter sur ce qu'on observe, la logique qui s'y cache.*
+Pour l'attribution dynamique, on va mettre en oeuvre la stratégie de mettre esclave. Dès qu'un processus a fini de calculer une ligne, il va recevoir par le processus maitre (ici ce sera 0) une nouvelle ligne a calculé. 
 
-*Expliquer votre stratégie pour faire une partition dynamique des lignes de l'image entre chaque processus*
 
            | Taille image : 800 x 600 | 
 -----------+---------------------------

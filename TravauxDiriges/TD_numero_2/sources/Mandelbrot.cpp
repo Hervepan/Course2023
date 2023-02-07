@@ -1,12 +1,14 @@
-# include <iostream>
-# include <cstdlib>
-# include <string>
-# include <chrono>
-# include <cmath>
-# include <vector>
-# include <fstream>
+#include <iostream>
+#include <cstdlib>
+#include <string>
+#include <chrono>
+#include <cmath>
+#include <vector>
+#include <fstream>
+#include <mpi.h>
+#include <sstream>
 
-
+using namespace std;
 /** Une structure complexe est définie pour la bonne raison que la classe
  * complex proposée par g++ est très lente ! Le calcul est bien plus rapide
  * avec la petite structure donnée ci--dessous
@@ -90,19 +92,13 @@ computeMandelbrotSetRow( int W, int H, int maxIter, int num_ligne, int* pixels)
 }
 
 std::vector<int>
-computeMandelbrotSet( int W, int H, int maxIter )
+computeMandelbrotSet( int W, int H,int offset,int nb_line,int maxIter )
 {
-    std::chrono::time_point<std::chrono::system_clock> start, end;
-    std::vector<int> pixels(W*H);
-    start = std::chrono::system_clock::now();
+    std::vector<int> pixels(W*nb_line);
     // On parcourt les pixels de l'espace image :
-    for ( int i = 0; i < H; ++i ) {
-      computeMandelbrotSetRow(W, H, maxIter, i, pixels.data() + W*(H-i-1) );
+    for ( int i = 0; i < nb_line; ++i ) {
+      computeMandelbrotSetRow(W, H, maxIter, offset+i, &pixels.data()[W*i] ); //I changed the function because it took wrong line to set
     }
-    end = std::chrono::system_clock::now();
-    std::chrono::duration<double> elapsed_seconds = end-start;
-    std::cout << "Temps calcul ensemble mandelbrot : " << elapsed_seconds.count() 
-              << std::endl;
     return pixels;
 }
 
@@ -123,16 +119,45 @@ void savePicture( const std::string& filename, int W, int H, const std::vector<i
     ofs.close();
 }
 
+ostream& operator<<(ostream& stream, vector<int> vec){
+    for(auto it:vec){
+        if (it!=0){
+            stream << it << ",";
+        }
+    }
+    return stream;
+}
+
+
 int main(int argc, char *argv[] ) 
  { 
     const int W = 800;
     const int H = 600;
+    int number_proc;
+    int rank;
+    MPI_Init(&argc,&argv);
+    MPI_Comm_size(MPI_COMM_WORLD, &number_proc);
+    MPI_Comm_rank(MPI_COMM_WORLD,&rank); 
+    int nb_ligne=H/number_proc;
     // Normalement, pour un bon rendu, il faudrait le nombre d'itérations
-    // ci--dessous :
+    // ci--dessous : 
     //const int maxIter = 16777216;
+    std::chrono::time_point<std::chrono::system_clock> start, end;
+    start = std::chrono::system_clock::now();
     const int maxIter = 8*65536;
-    auto iters = computeMandelbrotSet( W, H, maxIter );
-    savePicture("mandelbrot.tga", W, H, iters, maxIter);
+    int offset=rank*nb_ligne;
+    stringstream name;
+    std::vector<int> send=computeMandelbrotSet(W,H,offset,nb_ligne,maxIter);
+    std::vector<int> result(W*H);
+    MPI_Gather(send.data(),W*nb_ligne,MPI_INT,result.data(),W*nb_ligne,MPI_INT,0,MPI_COMM_WORLD);
+    MPI_Barrier(MPI_COMM_WORLD);
+    end = std::chrono::system_clock::now();
+    std::chrono::duration<double> elapsed_seconds = end-start;
+    if (rank==0) {
+        savePicture("mandelbrot.tga",W,H,result,maxIter);
+        std::cout << "Temps calcul ensemble mandelbrot : " << elapsed_seconds.count() << std::endl;
+    }
+    MPI_Finalize();
     return EXIT_SUCCESS;
  }
     

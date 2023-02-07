@@ -82,8 +82,6 @@ total_convergence = None
 if rank == 0 : 
     total_convergence = np.empty((size, width, pcs_height),dtype=np.double)
 
-comm.Gather(sendbuf=convergence, recvbuf=total_convergence, root=0)
-
 # Constitution de l'image résultante :
 if rank == 0 :
     deb = time()
