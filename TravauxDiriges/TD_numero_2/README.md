@@ -48,12 +48,12 @@ Puisqu'on utilise un gather pour récuperer toutes les données, il faut que le 
 
 Nombre de processus  | Temps (s)| speed_up 
 -----------|--------------------------|------------
-Séquentiel|99.0591|1
-2|49.8853|0.50359129
-3|37.9914|0.383522564
-4|29.7911|0.300740669
-6|26.4884|0.267399966
-8|29.3877|0.296668353
+Séquentiel|99.0591|1.00000
+2|49.8853|1.98573
+3|37.9914|2.60740
+4|29.7911|3.32512
+6|26.4884|3.73971
+8|29.3877|3.37076
 
 Ici on observe que le temps n'augmente pas linéairement comme on pourrait l'imaginer. Cela conforte la loi d'Ahmdal.
 En regardant de plus près les résultats on remarque que c'est souvent les process qui obtiennent des lignes situés vers la fin de l'image qui bloque le programme. 
