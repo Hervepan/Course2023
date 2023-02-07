@@ -5,6 +5,13 @@ from PIL import Image
 from math import log
 from time import time
 import matplotlib.cm
+from mpi4py import MPI
+
+
+comm = MPI.COMM_WORLD
+rank = comm.Get_rank()
+size = comm.Get_size()
+
 
 @dataclass
 class MandelbrotSet:
@@ -18,7 +25,7 @@ class MandelbrotSet:
         value = self.count_iterations(c,smooth)/self.max_iterations
         return max(0.0, min(value, 1.0)) if clamp else value
 
-    def count_iterations(self, c: complex,  smooth=False) -> int | float :
+    def count_iterations(self, c: complex,  smooth=False) :
         z    : complex
         iter : int
 
@@ -47,23 +54,46 @@ class MandelbrotSet:
 
 # On peut changer les paramètres des deux prochaines lignes
 mandelbrot_set = MandelbrotSet(max_iterations=50,escape_radius=10)
-width, height = 1024, 1024
+width, height = 800, 600
+
+# Répartition des lignes par processus
+pcs_height = height // size
 
 scaleX = 3./width
 scaleY = 2.25/height
-convergence = np.empty((width,height),dtype=np.double)
+convergence = np.empty((width,pcs_height),dtype=np.double)
+
 # Calcul de l'ensemble de mandelbrot :
 deb = time()
-for y in range(height):
+range_beg = rank*pcs_height
+range_end = (rank+1)*pcs_height
+
+for y in range(range_beg, range_end):
     for x in range(width):
-        c = complex(-2. + scaleX*x, -1.125 + scaleY * y)
-        convergence[x,y] = mandelbrot_set.convergence(c,smooth=True)
+        c = complex(-2. + scaleX*x, -1.125 + scaleY * (y))
+        convergence[x,y-range_beg] = mandelbrot_set.convergence(c,smooth=True)
 fin = time()
-print(f"Temps du calcul de l'ensemble de Mandelbrot : {fin-deb}")
+print(f"{rank} - Temps du calcul de l'ensemble de Mandelbrot via répartition uniforme des lignes : {fin-deb}\n shape : {convergence.shape}")
+
+# image = Image.fromarray(np.uint8(matplotlib.cm.plasma(convergence.T)*255))
+# image.show()
+
+total_convergence = None
+if rank == 0 : 
+    total_convergence = np.empty((size, width, pcs_height),dtype=np.double)
+
+comm.Gather(sendbuf=convergence, recvbuf=total_convergence, root=0)
 
 # Constitution de l'image résultante :
-deb=time()
-image = Image.fromarray(np.uint8(matplotlib.cm.plasma(convergence.T)*255))
-fin = time()
-print(f"Temps de constitution de l'image : {fin-deb}")
-image.show()
+if rank == 0 :
+    deb = time()
+    image = np.empty((width, height),dtype=np.double)
+
+    # Recreate image as Gather returns garbage
+    for i in range(size):
+        image[:, i*pcs_height:(i+1)*pcs_height] = total_convergence[i, :, :]
+    #ATTENTION : Convergence.T
+    image = Image.fromarray(np.uint8(matplotlib.cm.plasma(image.T)*255))
+    fin = time()
+    print(f"Temps de constitution de l'image : {fin-deb}")
+    image.show()
