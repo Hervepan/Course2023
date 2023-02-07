@@ -75,6 +75,7 @@ séquentiel |
 
 ## Produit matrice-vecteur
 
+
 ### Produit parallèle matrice - vecteur par colonne 
 
 Pour avoir la dimension locale pour chaque processus, si le nombre de processus divise N (nombre de colonne) alors il suffira d'attribuer des matrices de dimension N*(N/nbp) avec nbp le nombre de processus.
