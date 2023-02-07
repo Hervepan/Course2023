@@ -33,11 +33,12 @@ Puisque qu'elle obtient une accélération maximale de 4, il semble que 4 noeuds
 
 D'après la loi de Gustafon on a : 
 
-$$ S(n) = n + (1-n)s $$ avec s la proportion de temps passé en séquentiel.
-
+$$ S(n) = n + (1-n)s $$
+avec s la proportion de temps passé en séquentiel.
 Ici on a choisi n = 4 :
+on a donc 
 
-on a donc $$ S(n) = 3,7 $$ 
+$$ S(n) = 3,7 $$ 
 
 ## Mandelbrot 
 
