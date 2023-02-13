@@ -6,3 +6,4 @@ do
     mpiexec -n $i ./a.out
     echo -e "\n"
 done    
+
